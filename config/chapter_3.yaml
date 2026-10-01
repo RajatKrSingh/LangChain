@@ -1,0 +1,16 @@
+summarize_chunk_prompt_template: >-
+    Write a concise summary of the following text, and include the main details. Text: {chunk}
+summarize_summaries_prompt_template: >-
+    Write a concise summary of the following text, which joins several sumamries, and include the main details.
+    Text: {summaries}
+doc_summary_template: >-
+    Write a concise summary of the following text:
+    {text}
+    DOC SUMMARY:
+refine_summary_template: >-
+    Your must produce a final summary from the current refined summary
+    which has been generated so far and from the content of an additional document.
+    This is the current refined summary generated so far: {current_refined_summary}
+    This is the content of the additional document: {summary}
+    Only use the content of the additional document if it is useful, 
+    otherwise return the current full summary as it is.
