@@ -1,0 +1,45 @@
+rewriter_prompt_template: >-
+  Generate search query for the Chroma DB vector store
+  from a user question, allowing for a more accurate 
+  response through semantic search.
+  Just return the revised Chroma DB query, with quotes around it. 
+
+  User question: {user_question}
+  Revised Chroma DB query:
+
+rag_prompt_template: >-
+  Given a question and some context, answer the question.
+  If you do not know the answer, just say I do not know.
+
+  Context: {context}
+  Question: {question}
+
+multi_query_gen_prompt_template: >-
+  You are an AI language model assistant. Your task 
+  is to generate five different versions of the given 
+  user question to retrieve relevant documents from a vector 
+  database. By generating multiple perspectives on the user 
+  question, your goal is to help the user overcome some of 
+  the limitations of the distance-based similarity search. 
+  Provide these alternative questions separated by newlines.
+  Original question: {question}
+
+step_back_prompt_template: >-
+  Generate a less specific question (aka Step-back question) 
+  for the following detailed question, so that a wider context 
+  can be retrieved.
+  Detailed question: {detailed_question}
+  Step-back question:
+
+rag_prompt_template: >-
+  Given a question and some context, answer the question.
+  If you do not know the answer, just say I do not know.
+
+  Context: {context}
+  Question: {question}
+
+hyde_prompt_template: >-
+  Write one sentence that could answer the provided question. 
+  Do not add anything else.
+  Question: {question}
+  Sentence:

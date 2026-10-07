@@ -69,6 +69,14 @@ def langchain_local_mistral_demonstration():
     print(response)
 
 @log_function
+def langchain_gemini_demonstration():
+    ''' Invoke Gemini api for Chat Model
+    '''
+    llm = get_llm_model(False, False, True)
+    response = llm.invoke("How many greek temples are there in Paestum?\n")
+    print(response)
+
+@log_function
 def langchain_sentence_completion():
     ''' Perform sentence completion
     '''
@@ -175,6 +183,7 @@ def main():
     # raw_openai_api_demonstration()
     # raw_local_mistral_demonstration()
     langchain_local_mistral_demonstration()
+    langchain_gemini_demonstration()
     # langchain_sentence_completion()
     # prompttemplate_demonstration()
     # chaining_demonstration()

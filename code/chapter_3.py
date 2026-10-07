@@ -245,8 +245,8 @@ def summarization_engine_multiple_documents():
 
 
 def main():
-    # summarization_engine_single_document()
-    summarization_engine_multiple_documents()
+    summarization_engine_single_document()
+    # summarization_engine_multiple_documents()
 
 if __name__=="__main__":
     main()

@@ -1,0 +1,62 @@
+system_message_template: >-
+  You are an expert at converting user 
+  questions into vector database queries. 
+  You have access to a database of tourist destinations.
+  Given a question, return a database query optimized 
+  to retrieve the most relevant results.
+
+  If there are acronyms or words you are not familiar with, 
+  do not try to rephrase them.
+
+clean_sql_prompt_template: >-
+  You are an expert in SQL Lite. 
+  You are asked to fix badly formed SQL Lite queries, 
+  which might contain unneded prefixes or suffixes. 
+  Given the following unclean SQL statement, 
+  transform it to a clean, 
+  executable SQL statement for SQL lite.
+  Always prefix column names with the table name.
+  Only return an executable SQL statement which terminates 
+  with a semicolon. Do not return anything else.
+  Do not include the language name or symbols like ```.
+
+  Unclean SQL: {unclean_sql}
+
+travel_system_message_template: >-
+  system = """You are an expert at routing a user question 
+  to a tourist info vector store 
+  or to an UK accommodation booking relational database.
+  The vector store contains tourist information about UK destinations.
+  Use the vectorstore for general tourist information questions 
+  on UK destinations. 
+  For questions about accommodation availability or booking, 
+  use the UK Booking database.
+
+rag_prompt_template: >-
+  Given a question and some context, answer the question.
+  If you get a structured context, like a tuple, try to 
+  infer the meaning of the components: 
+  typically they refer to accommodation offers, 
+  and the number is a percentage (0.2 means 20%).
+  If you do not know the answer, just say I do not know.
+
+  Context: {context}
+  Question: {question}
+
+multi_query_gen_prompt_template: >-
+  You are an AI language model assistant. Your task is 
+  to generate five different versions of the given user 
+  question to retrieve relevant documents from a vector 
+  database. By generating multiple perspectives on the 
+  user question, your goal is to help
+  the user overcome some of the limitations of the 
+  distance-based similarity search. 
+  Provide these alternative questions separated by newlines.
+  Original question: {question}
+
+rag_prompt_template_rag_fusion: >-
+  Given a question and some context, answer the question.
+  If you do not know the answer, just say I do not know.
+
+  Context: {context}
+  Question: {question}

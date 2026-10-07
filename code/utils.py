@@ -53,13 +53,14 @@ def get_huggingface_models():
     # print(info.inference_provider_mapping)
 
 @log_function
-def get_llm_model(use_openai = False, host_model=False):
+def get_llm_model(use_openai = False, host_model=False, use_gemini=False):
     ''' get Relevant model either from huggingface or openai
     '''
     OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
     HUGGINGFACEHUB_API_KEY = os.getenv("HUGGINGFACEHUB_API_KEY")
     HUGGINGFACE_SERVERLESS_MODEL = os.getenv("HUGGINGFACE_SERVERLESS_MODEL")
     HUGGINGFACE_LOCAL_MODEL = os.getenv("HUGGINGFACE_LOCAL_MODEL")
+    GEMINI_API_KEY = os.environ.get("GEMINI_API_KEY")
 
     if not use_openai and not host_model:
         from langchain_huggingface import HuggingFaceEndpoint
@@ -72,6 +73,13 @@ def get_llm_model(use_openai = False, host_model=False):
             huggingfacehub_api_token=HUGGINGFACEHUB_API_KEY
         )
         llm = ChatHuggingFace(llm=llm_model)
+    elif use_gemini:
+        from langchain_google_genai import ChatGoogleGenerativeAI
+        llm = ChatGoogleGenerativeAI(
+            model="gemini-3.8-flash",
+            temperature=0,
+            api_key = GEMINI_API_KEY
+        )
     elif host_model:
         from langchain_huggingface import HuggingFacePipeline
         from transformers import ( AutoTokenizer, AutoModelForCausalLM, pipeline )
